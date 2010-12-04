@@ -171,16 +171,16 @@ Controller:
 
 View:
 
-  <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+  <% tag_cloud(@tags, %w(tagcloud1 tagcloud2 tagcloud3 tagcloud4)) do |tag, css_class| %>
     <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
   <% end %>
 
 CSS:
 
-  .css1 { font-size: 1.0em; }
-  .css2 { font-size: 1.2em; }
-  .css3 { font-size: 1.4em; }
-  .css4 { font-size: 1.6em; }
+  .tagcloud1 { font-size: 1.0em; }
+  .tagcloud2 { font-size: 1.2em; }
+  .tagcloud3 { font-size: 1.4em; }
+  .tagcloud4 { font-size: 1.6em; }
 
 == Contributors
 
