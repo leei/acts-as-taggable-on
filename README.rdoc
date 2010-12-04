@@ -37,14 +37,13 @@ To use it, add it to your Gemfile:
 3. Create two model classes, like so:
 
   class Tag < ActiveRecord::Base
-    is_tag_class
   end
 
   class Tagging < ActiveRecord::Base
-    is_tagging_class
   end
 
-For now, these classes MUST be named Tag and Tagging, but I will be changing that.
+These classes form your extension-point for changing the behavior of the code.
+
 
 
 == Testing
@@ -203,6 +202,7 @@ CSS:
 * Brendan Lim - Related Objects
 * Pradeep Elankumaran - Taggers
 * Sinclair Bain - Patch King
+* Jon Frisby - Presumptuous SOB
 
 === Patch Contributors
 

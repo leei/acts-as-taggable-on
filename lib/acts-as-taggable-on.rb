@@ -20,8 +20,6 @@ $LOAD_PATH.shift
 
 if defined?(ActiveRecord::Base)
   ActiveRecord::Base.extend ActsAsTaggableOn::Taggable
-  ActiveRecord::Base.extend ActsAsTaggableOn::Tagging
-  ActiveRecord::Base.extend ActsAsTaggableOn::Tag
   ActiveRecord::Base.send :include, ActsAsTaggableOn::Tagger
 end
 

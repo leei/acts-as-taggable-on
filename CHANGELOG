@@ -1,9 +1,8 @@
 == 2010-12-03 - JDF
 
 * Ditch backward-compatibility in favor of more Rails-esque code.
-* Make Tag and Tagging modules to be imported into a class.
-  (Still TODO:  Make the association names configurable so that this is actually
-  USEFUL...)
+* Make Tag and Tagging classes not be in a module, so as to avoid confusing 
+  Rails routing and the like.
 
 == 2010-02-17
 

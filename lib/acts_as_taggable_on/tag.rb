@@ -1,99 +1,80 @@
-module ActsAsTaggableOn
-  module Tag
-    def self.included(base)
-      base.extend ClassMethods
-    end
+class Tag < ActiveRecord::Base
+  attr_accessible :name
 
-    module ClassMethods
-      ##
-      # Make a model be the tag class. There should be only one.
-      #
-      # Example:
-      #   class Tag < ActiveRecord::Base
-      #     is_tag_class
-      #   end
-      def is_tag_class(opts={})
-        class_eval do
-          attr_accessible :name
+  ### ASSOCIATIONS:
 
-          ### ASSOCIATIONS:
+  has_many :taggings, :dependent => :destroy, :class_name => "Tagging"
 
-          has_many :taggings, :dependent => :destroy, :class_name => "Tagging"
+  ### VALIDATIONS:
 
-          ### VALIDATIONS:
+  validates_presence_of :name
+  validates_uniqueness_of :name
 
-          validates_presence_of :name
-          validates_uniqueness_of :name
+  ### SCOPES:
 
-          ### SCOPES:
-    
-          def self.using_postgresql?
-            connection.adapter_name == 'PostgreSQL'
-          end
+  def self.using_postgresql?
+    connection.adapter_name == 'PostgreSQL'
+  end
 
-          scope :named, lambda { |name| where(["name #{like_operator} ?", name]).first }
-  
-          scope :named_any, lambda { |list| 
-            where(list.map { |tag| 
-              sanitize_sql(["name #{like_operator} ?", tag.to_s])
-            }.join(" OR "))
-          }
-  
-          scope :named_like, lambda { |name|
-            where(["name #{like_operator} ?", "%#{name}%"])
-          }
+  scope :named, lambda { |name| where(["name #{like_operator} ?", name]).first }
 
-          scope :named_like_any, lambda { |list|
-            where(list.map { |tag| sanitize_sql(["name #{like_operator} ?", "%#{tag.to_s}%"]) }.join(" OR "))
-          }
+  scope :named_any, lambda { |list| 
+    where(list.map { |tag| 
+      sanitize_sql(["name #{like_operator} ?", tag.to_s])
+    }.join(" OR "))
+  }
 
-          ### CLASS METHODS:
+  scope :named_like, lambda { |name|
+    where(["name #{like_operator} ?", "%#{name}%"])
+  }
 
-          def self.find_or_create_with_like_by_name(name)
-            named_like(name).first || create(:name => name)
-          end
+  scope :named_like_any, lambda { |list|
+    where(list.map { |tag| sanitize_sql(["name #{like_operator} ?", "%#{tag.to_s}%"]) }.join(" OR "))
+  }
 
-          def self.find_or_create_all_with_like_by_name(*list)
-            list = [list].flatten
+  ### CLASS METHODS:
 
-            return [] if list.empty?
+  def self.find_or_create_with_like_by_name(name)
+    named_like(name).first || create(:name => name)
+  end
 
-            existing_tags = Tag.named_any(list).all
-            new_tag_names = list.reject do |name| 
-                              name = comparable_name(name)
-                              existing_tags.any? { |tag| comparable_name(tag.name) == name }
-                            end
-            created_tags  = new_tag_names.map { |name| Tag.create(:name => name) }
+  def self.find_or_create_all_with_like_by_name(*list)
+    list = [list].flatten
 
-            existing_tags + created_tags
-          end
+    return [] if list.empty?
 
-          ### INSTANCE METHODS:
+    existing_tags = Tag.named_any(list).all
+    new_tag_names = list.reject do |name| 
+                      name = comparable_name(name)
+                      existing_tags.any? { |tag| comparable_name(tag.name) == name }
+                    end
+    created_tags  = new_tag_names.map { |name| Tag.create(:name => name) }
 
-          def ==(object)
-            super || (object.is_a?(Tag) && name == object.name)
-          end
+    existing_tags + created_tags
+  end
 
-          def to_s
-            name
-          end
+  ### INSTANCE METHODS:
 
-          def count
-            read_attribute(:count).to_i
-          end
+  def ==(object)
+    super || (object.is_a?(Tag) && name == object.name)
+  end
 
-          class << self
-            private
-              def like_operator
-                using_postgresql? ? 'ILIKE' : 'LIKE'
-              end
-        
-              def comparable_name(str)
-                RUBY_VERSION >= "1.9" ? str.downcase : str.mb_chars.downcase
-              end
-          end
-        end
+  def to_s
+    name
+  end
+
+  def count
+    read_attribute(:count).to_i
+  end
+
+  class << self
+    private
+      def like_operator
+        using_postgresql? ? 'ILIKE' : 'LIKE'
       end
-    end
+
+      def comparable_name(str)
+        RUBY_VERSION >= "1.9" ? str.downcase : str.mb_chars.downcase
+      end
   end
 end
