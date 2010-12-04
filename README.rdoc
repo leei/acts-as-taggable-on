@@ -44,7 +44,7 @@ directory, you can run the specs for RoR 3.0.0 with:
 
 If you already have RSpec on your application, the specs will run while using:
 
-rake spec:plugins
+  rake spec:plugins
 
 
 == Usage
@@ -68,6 +68,7 @@ rake spec:plugins
     User.skill_counts # => [<Tag name="joking" count=2>,<Tag name="clowning" count=1>...]
     @frankie.skill_counts
 
+
 === Finding Tagged Objects
 
 Acts As Taggable On utilizes named_scopes to create an association for tags.
@@ -88,6 +89,7 @@ compatibility with the will_paginate gem:
     # Find a user with any of the tags:
     User.tagged_with(["awesome", "cool"], :any => true)
 
+
 === Relationships
 
 You can find objects of the same type based on similar tags on certain contexts.
@@ -107,6 +109,7 @@ matched tags.
     @bobby.find_related_skills # => [<User name="Tom">] 
     @frankie.find_related_skills # => [<User name="Tom">] 
 
+
 === Dynamic Tag Contexts
 
 In addition to the generated tag contexts in the definition, it is also possible
@@ -119,6 +122,7 @@ to allow for dynamic tag contexts (this could be user generated tag contexts!)
     @user.tags_on(:customs) # => [<Tag name='same'>,...]
     @user.tag_counts_on(:customs)
     User.tagged_with("same", :on => :customs) # => [@user]
+
 
 === Tag Ownership
 
@@ -136,7 +140,8 @@ Tags can have owners:
     @some_user.owned_taggings
     @some_user.owned_tags
     @some_photo.locations_from(@some_user)
-    
+
+
 === Tag cloud calculations
 
 To construct tag clouds, the frequency of each tag needs to be calculated.
