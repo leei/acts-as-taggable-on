@@ -1,6 +1,6 @@
 = ActsAsTaggableOn
 
-This plugin was originally based on Acts as Taggable on Steroids by Jonathan Viney.
+This plugin was originally based on ActsAsTaggableOnSteroids by Jonathan Viney.
 It has evolved substantially since that point, but all credit goes to him for the
 initial tagging functionality that so many people have used.
 
@@ -8,7 +8,7 @@ For instance, in a social network, a user might have tags that are called skills
 interests, sports, and more. There is no real way to differentiate between tags and
 so an implementation of this type is not possible with acts as taggable on steroids.
 
-Enter Acts as Taggable On. Rather than tying functionality to a specific keyword
+Enter ActsAsTaggableOn. Rather than tying functionality to a specific keyword
 (namely "tags"), acts as taggable on allows you to specify an arbitrary number of
 tag "contexts" that can be used locally or in combination in the same way steroids
 was used.
@@ -23,7 +23,7 @@ had compatibility removed to allow more Rails-esque code.
 
 === Rails 3.0
 
-Acts As Taggable On is now useable in Rails 3.0, thanks to the excellent work of Szymon Nowak
+ActsAsTaggableOn is now useable in Rails 3.0, thanks to the excellent work of Szymon Nowak
 and Jelle Vandebeeck.
 
 To use it, add it to your Gemfile:
@@ -37,7 +37,7 @@ To use it, add it to your Gemfile:
 
 == Testing
 
-Acts As Taggable On uses RSpec for its test coverage. Inside the plugin
+ActsAsTaggableOn uses RSpec for its test coverage. Inside the plugin
 directory, you can run the specs for RoR 3.0.0 with:
 
   rake spec
