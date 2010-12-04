@@ -1,7 +1,12 @@
 == 2010-12-03 - JDF
 
 * Ditch backward-compatibility in favor of more Rails-esque code.
+* Make Tag and Tagging modules to be imported into a class.
+  (Still TODO:  Make the association names configurable so that this is actually
+  USEFUL...)
+
 == 2010-02-17
+
 * Converted the plugin to be compatible with Rails3
 
 == 2009-12-02

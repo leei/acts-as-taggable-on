@@ -34,6 +34,18 @@ To use it, add it to your Gemfile:
 
 1. rails generate acts_as_taggable_on:migration
 2. rake db:migrate
+3. Create two model classes, like so:
+
+  class Tag < ActiveRecord::Base
+    is_tag_class
+  end
+
+  class Tagging < ActiveRecord::Base
+    is_tagging_class
+  end
+
+For now, these classes MUST be named Tag and Tagging, but I will be changing that.
+
 
 == Testing
 
