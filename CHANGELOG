@@ -1,11 +1,4 @@
-== 2010-12-03 - JDF
-
-* Ditch backward-compatibility in favor of more Rails-esque code.
-* Make Tag and Tagging classes not be in a module, so as to avoid confusing 
-  Rails routing and the like.
-
 == 2010-02-17
-
 * Converted the plugin to be compatible with Rails3
 
 == 2009-12-02

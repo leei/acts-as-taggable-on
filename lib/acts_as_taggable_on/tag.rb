@@ -1,10 +1,12 @@
 module ActsAsTaggableOn
-  class Tag < ActiveRecord::Base
+  class Tag < ::ActiveRecord::Base
+    include ActsAsTaggableOn::ActiveRecord::Backports if ::ActiveRecord::VERSION::MAJOR < 3
+  
     attr_accessible :name
 
     ### ASSOCIATIONS:
 
-    has_many :taggings, :dependent => :destroy, :class_name => "Tagging"
+    has_many :taggings, :dependent => :destroy, :class_name => 'ActsAsTaggableOn::Tagging'
 
     ### VALIDATIONS:
 
@@ -12,26 +14,26 @@ module ActsAsTaggableOn
     validates_uniqueness_of :name
 
     ### SCOPES:
-
+    
     def self.using_postgresql?
       connection.adapter_name == 'PostgreSQL'
     end
 
-    scope :named, lambda { |name| where(["name #{like_operator} ?", name]) }
-
-    scope :named_any, lambda { |list| 
-      where(list.map { |tag| 
-        sanitize_sql(["name #{like_operator} ?", tag.to_s])
-      }.join(" OR "))
-    }
-
-    scope :named_like, lambda { |name|
+    def self.named(name)
+      where(["name #{like_operator} ?", name])
+    end
+  
+    def self.named_any(list)
+      where(list.map { |tag| sanitize_sql(["name #{like_operator} ?", tag.to_s]) }.join(" OR "))
+    end
+  
+    def self.named_like(name)
       where(["name #{like_operator} ?", "%#{name}%"])
-    }
+    end
 
-    scope :named_like_any, lambda { |list|
+    def self.named_like_any(list)
       where(list.map { |tag| sanitize_sql(["name #{like_operator} ?", "%#{tag.to_s}%"]) }.join(" OR "))
-    }
+    end
 
     ### CLASS METHODS:
 
@@ -73,7 +75,7 @@ module ActsAsTaggableOn
         def like_operator
           using_postgresql? ? 'ILIKE' : 'LIKE'
         end
-
+        
         def comparable_name(str)
           RUBY_VERSION >= "1.9" ? str.downcase : str.mb_chars.downcase
         end

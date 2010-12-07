@@ -1,6 +1,6 @@
 = ActsAsTaggableOn
 
-This plugin was originally based on ActsAsTaggableOnSteroids by Jonathan Viney.
+This plugin was originally based on Acts as Taggable on Steroids by Jonathan Viney.
 It has evolved substantially since that point, but all credit goes to him for the
 initial tagging functionality that so many people have used.
 
@@ -8,7 +8,7 @@ For instance, in a social network, a user might have tags that are called skills
 interests, sports, and more. There is no real way to differentiate between tags and
 so an implementation of this type is not possible with acts as taggable on steroids.
 
-Enter ActsAsTaggableOn. Rather than tying functionality to a specific keyword
+Enter Acts as Taggable On. Rather than tying functionality to a specific keyword
 (namely "tags"), acts as taggable on allows you to specify an arbitrary number of
 tag "contexts" that can be used locally or in combination in the same way steroids
 was used.
@@ -17,13 +17,30 @@ was used.
 
 === Rails 2.3.x
 
-This variant of ActsAsTaggableOn does not support Rails 2.3.x.  This branch has
-had compatibility removed to allow more Rails-esque code.
+Acts As Taggable On is tested to work in Rails 2.3.5. 
 
+==== Plugin
+
+Acts As Taggable On is available both as a gem and as a traditional plugin. For the
+traditional plugin you can install like so:
+
+  script/plugin install git://github.com/mbleigh/acts-as-taggable-on.git
+
+Acts As Taggable On is also available as a gem plugin using Rails 2.1's gem dependencies.
+To install the gem, add this to your config/environment.rb:
+  
+  config.gem "acts-as-taggable-on", :source => "http://gemcutter.org", :version => '2.0.0.rc1'
+  
+After that, you can run "rake gems:install" to install the gem if you don't already have it.
+
+==== Post Installation
+
+1. script/generate acts_as_taggable_on_migration
+2. rake db:migrate
 
 === Rails 3.0
 
-ActsAsTaggableOn is now useable in Rails 3.0, thanks to the excellent work of Szymon Nowak
+Acts As Taggable On is now useable in Rails 3.0, thanks to the excellent work of Szymon Nowak
 and Jelle Vandebeeck.
 
 To use it, add it to your Gemfile:
@@ -34,28 +51,21 @@ To use it, add it to your Gemfile:
 
 1. rails generate acts_as_taggable_on:migration
 2. rake db:migrate
-3. Create two model classes, like so:
-
-  class Tag < ActiveRecord::Base
-  end
-
-  class Tagging < ActiveRecord::Base
-  end
-
-These classes form your extension-point for changing the behavior of the code.
-
-
 
 == Testing
 
-ActsAsTaggableOn uses RSpec for its test coverage. Inside the plugin
+Acts As Taggable On uses RSpec for its test coverage. Inside the plugin
 directory, you can run the specs for RoR 3.0.0 with:
 
   rake spec
 
+If you want to test the plugin for Rails 2.3.x, use:
+
+  rake rails2.3:spec
+
 If you already have RSpec on your application, the specs will run while using:
 
-  rake spec:plugins
+rake spec:plugins
 
 
 == Usage
@@ -79,7 +89,6 @@ If you already have RSpec on your application, the specs will run while using:
     User.skill_counts # => [<Tag name="joking" count=2>,<Tag name="clowning" count=1>...]
     @frankie.skill_counts
 
-
 === Finding Tagged Objects
 
 Acts As Taggable On utilizes named_scopes to create an association for tags.
@@ -100,7 +109,6 @@ compatibility with the will_paginate gem:
     # Find a user with any of the tags:
     User.tagged_with(["awesome", "cool"], :any => true)
 
-
 === Relationships
 
 You can find objects of the same type based on similar tags on certain contexts.
@@ -120,7 +128,6 @@ matched tags.
     @bobby.find_related_skills # => [<User name="Tom">] 
     @frankie.find_related_skills # => [<User name="Tom">] 
 
-
 === Dynamic Tag Contexts
 
 In addition to the generated tag contexts in the definition, it is also possible
@@ -133,7 +140,6 @@ to allow for dynamic tag contexts (this could be user generated tag contexts!)
     @user.tags_on(:customs) # => [<Tag name='same'>,...]
     @user.tag_counts_on(:customs)
     User.tagged_with("same", :on => :customs) # => [@user]
-
 
 === Tag Ownership
 
@@ -151,8 +157,7 @@ Tags can have owners:
     @some_user.owned_taggings
     @some_user.owned_tags
     @some_photo.locations_from(@some_user)
-
-
+    
 === Tag cloud calculations
 
 To construct tag clouds, the frequency of each tag needs to be calculated.
@@ -182,16 +187,16 @@ Controller:
 
 View:
 
-  <% tag_cloud(@tags, %w(tagcloud1 tagcloud2 tagcloud3 tagcloud4)) do |tag, css_class| %>
+  <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
     <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
   <% end %>
 
 CSS:
 
-  .tagcloud1 { font-size: 1.0em; }
-  .tagcloud2 { font-size: 1.2em; }
-  .tagcloud3 { font-size: 1.4em; }
-  .tagcloud4 { font-size: 1.6em; }
+  .css1 { font-size: 1.0em; }
+  .css2 { font-size: 1.2em; }
+  .css3 { font-size: 1.4em; }
+  .css4 { font-size: 1.6em; }
 
 == Contributors
 
@@ -202,7 +207,6 @@ CSS:
 * Brendan Lim - Related Objects
 * Pradeep Elankumaran - Taggers
 * Sinclair Bain - Patch King
-* Jon Frisby - Presumptuous SOB
 
 === Patch Contributors
 
