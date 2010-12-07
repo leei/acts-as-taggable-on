@@ -30,7 +30,7 @@ describe "Taggable" do
     
     lambda {
       @taggable.save
-    }.should change(ActsAsTaggableOn::Tag, :count).by(3)
+    }.should change(::Tag, :count).by(3)
     
     @taggable.reload
     @taggable.skill_list.sort.should == %w(ruby rails css).sort
@@ -90,7 +90,7 @@ describe "Taggable" do
     bob = TaggableModel.create(:name => "Bob", :tag_list => "ruby")
     frank = TaggableModel.create(:name => "Frank", :tag_list => "Ruby")
 
-    ActsAsTaggableOn::Tag.find(:all).size.should == 1
+    ::Tag.find(:all).size.should == 1
     TaggableModel.tagged_with("ruby").to_a.should == TaggableModel.tagged_with("Ruby").to_a
   end
 

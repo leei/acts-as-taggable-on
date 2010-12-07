@@ -17,6 +17,14 @@ rescue Bundler::GemNotFound
 end
 
 Bundler.require
+
+require "active_record"
+require "action_view"
+
+["tag.rb", "tagging.rb", "tags_helper.rb"].each do |file|
+  require File.expand_path("../../lib/generators/acts_as_taggable_on/migration/templates/active_record/#{file}", __FILE__)
+end
+
 require File.expand_path('../../lib/acts-as-taggable-on', __FILE__)
 
 unless [].respond_to?(:freq)

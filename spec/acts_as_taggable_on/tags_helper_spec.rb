@@ -1,6 +1,6 @@
 require File.expand_path('../../spec_helper', __FILE__)
 
-describe ActsAsTaggableOn::TagsHelper do
+describe ::TagsHelper do
   before(:each) do
     clean_database!
     
@@ -9,7 +9,7 @@ describe ActsAsTaggableOn::TagsHelper do
     @eve = TaggableModel.create(:name => "Eve Nodd",   :language_list => "ruby, c++")
     
     @helper = class Helper
-      include ActsAsTaggableOn::TagsHelper
+      include ::TagsHelper
     end.new
   end
   
