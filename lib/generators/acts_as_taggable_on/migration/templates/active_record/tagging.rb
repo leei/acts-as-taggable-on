@@ -1,4 +1,4 @@
-class Tagging < ::ActiveRecord::Base
+class Tagging < ActiveRecord::Base
   attr_accessible :tag,
                   :tag_id,
                   :context,
