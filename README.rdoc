@@ -171,12 +171,6 @@ A helper is included to assist with generating tag clouds.
 
 Here is an example that generates a tag cloud.
 
-Helper:
-
-  module PostsHelper
-    include ActsAsTaggableOn::TagsHelper
-  end
-
 Controller:
 
   class PostController < ApplicationController
