@@ -1,14 +1,14 @@
 require File.expand_path('../../spec_helper', __FILE__)
 
-describe ActsAsTaggableOn::Tagging do
+describe ::Tagging do
   before(:each) do
     clean_database!
-    @tagging = ActsAsTaggableOn::Tagging.new
+    @tagging = ::Tagging.new
   end
 
   it "should not be valid with a invalid tag" do
     @tagging.taggable = TaggableModel.create(:name => "Bob Jones")
-    @tagging.tag = ActsAsTaggableOn::Tag.new(:name => "")
+    @tagging.tag = ::Tag.new(:name => "")
     @tagging.context = "tags"
 
     @tagging.should_not be_valid
@@ -22,10 +22,10 @@ describe ActsAsTaggableOn::Tagging do
 
   it "should not create duplicate taggings" do
     @taggable = TaggableModel.create(:name => "Bob Jones")
-    @tag = ActsAsTaggableOn::Tag.create(:name => "awesome")
+    @tag = ::Tag.create(:name => "awesome")
 
     lambda {
-      2.times { ActsAsTaggableOn::Tagging.create(:taggable => @taggable, :tag => @tag, :context => 'tags') }
-    }.should change(ActsAsTaggableOn::Tagging, :count).by(1)
+      2.times { ::Tagging.create(:taggable => @taggable, :tag => @tag, :context => 'tags') }
+    }.should change(::Tagging, :count).by(1)
   end
 end
