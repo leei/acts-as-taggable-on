@@ -68,14 +68,13 @@ class Tag < ActiveRecord::Base
   end
 
   class << self
-    private
-      def like_operator
-        using_postgresql? ? 'ILIKE' : 'LIKE'
-      end
-        
-      def comparable_name(str)
-        RUBY_VERSION >= "1.9" ? str.downcase : str.mb_chars.downcase
-      end
+  private
+    def like_operator
+      using_postgresql? ? 'ILIKE' : 'LIKE'
+    end
+      
+    def comparable_name(str)
+      RUBY_VERSION >= "1.9" ? str.downcase : str.mb_chars.downcase
     end
   end
 end
