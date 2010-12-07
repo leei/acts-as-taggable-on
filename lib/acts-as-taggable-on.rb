@@ -13,10 +13,6 @@ require "acts_as_taggable_on/acts_as_taggable_on/ownership"
 require "acts_as_taggable_on/acts_as_taggable_on/related"
 
 require "acts_as_taggable_on/acts_as_tagger"
-require "acts_as_taggable_on/tag"
-require "acts_as_taggable_on/tag_list"
-require "acts_as_taggable_on/tags_helper"
-require "acts_as_taggable_on/tagging"
 
 $LOAD_PATH.shift
 
