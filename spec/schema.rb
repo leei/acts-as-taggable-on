@@ -1,12 +1,12 @@
 ActiveRecord::Schema.define :version => 0 do
   create_table "taggings", :force => true do |t|
-    t.integer  "tag_id",        :limit => 11
-    t.integer  "taggable_id",   :limit => 11
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
     t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
     t.string   "context"
     t.datetime "created_at"
-    t.integer  "tagger_id",     :limit => 11
-    t.string   "tagger_type"
   end
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
@@ -15,7 +15,9 @@ ActiveRecord::Schema.define :version => 0 do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
-  
+
+  add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
+
   create_table :taggable_models, :force => true do |t|
     t.column :name, :string
     t.column :type, :string
