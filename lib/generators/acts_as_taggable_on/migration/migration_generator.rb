@@ -22,16 +22,16 @@ module ActsAsTaggableOn
       Time.now.utc.strftime("%Y%m%d%H%M%S")
     end
 
-    def create_tag_file
-      file "tag.rb", "app/models/tag.rb"
+    def copy_tag_file
+      copy_file "tag.rb", "app/models/tag.rb"
     end
 
-    def create_tagging_file
-      file "tagging.rb", "app/models/tagging.rb"
+    def copy_tagging_file
+      copy_file "tagging.rb", "app/models/tagging.rb"
     end
 
-    def create_helper
-      file "tags_helper.rb", "app/helpers/tags_helper.rb"
+    def copy_helper
+      copy_file "tags_helper.rb", "app/helpers/tags_helper.rb"
     end
 
     def create_migration_file
