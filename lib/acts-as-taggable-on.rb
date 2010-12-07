@@ -20,7 +20,3 @@ if defined?(ActiveRecord::Base)
   ActiveRecord::Base.extend ActsAsTaggableOn::Taggable
   ActiveRecord::Base.send :include, ActsAsTaggableOn::Tagger
 end
-
-if defined?(ActionView::Base)
-  ActionView::Base.send :include, ActsAsTaggableOn::TagsHelper
-end
