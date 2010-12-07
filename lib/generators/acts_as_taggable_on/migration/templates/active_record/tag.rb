@@ -1,11 +1,9 @@
 class Tag < ActiveRecord::Base
-  has_many :taggings
-
   attr_accessible :name
 
   ### ASSOCIATIONS:
 
-  has_many :taggings, :dependent => :destroy, :class_name => 'ActsAsTaggableOn::Tagging'
+  has_many :taggings, :dependent => :destroy, :class_name => 'Tagging'
 
   ### VALIDATIONS:
 
