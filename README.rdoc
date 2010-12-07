@@ -17,7 +17,7 @@ was used.
 
 === Rails 2.3.x
 
-Acts As Taggable On is tested to work in Rails 2.3.5. 
+Acts As Taggable On is no longer compatible with Rails 2.3.x.
 
 ==== Plugin
 
