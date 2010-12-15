@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
     "lib/generators/acts_as_taggable_on/migration/templates/active_record/migration.rb",
     "lib/generators/acts_as_taggable_on/migration/templates/active_record/tag.rb",
     "lib/generators/acts_as_taggable_on/migration/templates/active_record/tagging.rb",
+    "lib/generators/acts_as_taggable_on/migration/templates/active_record/tags_helper.rb",
     "rails/init.rb",
     "spec/acts_as_taggable_on/acts_as_taggable_on_spec.rb",
     "spec/acts_as_taggable_on/acts_as_tagger_spec.rb",
