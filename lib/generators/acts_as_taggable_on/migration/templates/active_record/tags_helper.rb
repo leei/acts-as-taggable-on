@@ -12,7 +12,7 @@ module TagsHelper
 #    end
 
     # use logs to get a better exponential curve
-    min_log, max_log = lambda { |list| [list.first, list.last] }.call(tags.sort_by(&:count)).collect { |num| Math.log(num) }
+    min_log, max_log = lambda { |list| [list.first, list.last] }.call(tags.sort_by(&:count)).collect { |tag| Math.log(tag.count) }
     range_log = max_log - min_log
     range_log = 1 if max_log == min_log
     class_range = classes.size - 1
