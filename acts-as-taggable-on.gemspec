@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acts-as-taggable-on}
-  s.version = "2.0.7"
+  s.version = "2.0.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Michael Bleigh"]
-  s.date = %q{2010-12-06}
+  s.authors = ["Michael Bleigh", "Rod Cope"]
+  s.date = %q{2010-12-15}
   s.description = %q{With ActsAsTaggableOn, you could tag a single model on several contexts, such as skills, interests, and awards. It also provides other advanced functionality.}
-  s.email = %q{michael@intridea.com}
+  s.email = %q{michael@intridea.com,rod.cope@openlogic.com}
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
@@ -35,7 +35,6 @@ Gem::Specification.new do |s|
     "lib/generators/acts_as_taggable_on/migration/templates/active_record/migration.rb",
     "lib/generators/acts_as_taggable_on/migration/templates/active_record/tag.rb",
     "lib/generators/acts_as_taggable_on/migration/templates/active_record/tagging.rb",
-    "lib/generators/acts_as_taggable_on/migration/templates/tags_helper.rb",
     "rails/init.rb",
     "spec/acts_as_taggable_on/acts_as_taggable_on_spec.rb",
     "spec/acts_as_taggable_on/acts_as_tagger_spec.rb",
